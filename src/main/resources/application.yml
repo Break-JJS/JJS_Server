@@ -1,0 +1,11 @@
+#MySQL 및 JPA 설정
+spring:
+  datasource:
+    url: ENC(7Khk3oa0LcWZNKEEpBTEmriE/u6A2lhij2L+GB8DHEXAW8Mk0CKNH1kXu94/DmhslyZXUj892kEX45aMX6RMeKLJnzCaVNQUmOc7z3ez9+7vwU8dcad3wQ==)
+    username: ENC(zZzcWvrcFqXhOUeA8rTbow==)
+    password: ENC(1zLv7UDMR9sz/SJd/bSZCGVBzCumCBJu)
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
