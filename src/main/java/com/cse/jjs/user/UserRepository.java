@@ -1,13 +1,14 @@
 package com.cse.jjs.user;
 
 import com.cse.jjs.domain.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface UserRepository {
+@Repository
+public interface UserRepository extends JpaRepository<User, String>{
 
-    User save(User user);
-    Optional<User> findByUserId(String userId);
-    List<User> findAll();
+    Optional<User> findByUserID(String userID);
 }
