@@ -21,15 +21,14 @@ public class UserService {
     @Transactional
     public User join(User user){
         validateDuplicateUser(user);
-        System.out.println("호출완료!");
-        String rawPassword = user.getPassWord();
+        String rawPassword = user.getPassword();
         String encPassword = bCryptPasswordEncoder.encode(rawPassword);
-        user.setPassWord(encPassword);
+        user.setPassword(encPassword);
         return userRepository.save(user);
     }
 
     private void validateDuplicateUser(User user){
-        userRepository.findByUserID(user.getUserID())
+        userRepository.findByUsername(user.getUsername())
                 .ifPresent(m->{
                     throw new IllegalStateException("이미 존재하는 회원입니다.");
                 });

@@ -14,9 +14,9 @@ import java.util.List;
 public class User {
 
     @Id
-    private String userID;
+    private String username;
     @Column(nullable = false)
-    private String passWord;
+    private String password;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
@@ -30,15 +30,4 @@ public class User {
     private List<UserAllergy> userAllergies = new ArrayList<>();
     @OneToMany(mappedBy = "user")
     private List<UserDisease> userDiseases = new ArrayList<>();
-
-    public void setPassWord(String passWord)
-    {
-        this.passWord=passWord;
-    }
-
-    public String getPassWord()
-    {
-        return this.passWord;
-    }
-    public String getUserID(){return this.userID;}
 }

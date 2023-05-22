@@ -27,12 +27,18 @@ public class UserController {
         return "users/createUserForm";
     }
 
+
     @PostMapping(value = "/users/join")
     public String create(@Valid @RequestBody UserDto userDto){
         User user = userDto.toEntity();
         log.info(userDto.toString());
         userService.join(user);
 
-        return "redirect:/login";
+        return "redirect:/users/login";
+    }
+
+    @GetMapping("/users/login")
+    public String loginForm(){
+        return "users/login";
     }
 }

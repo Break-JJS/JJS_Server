@@ -9,9 +9,9 @@ import javax.validation.constraints.Size;
 @Data
 public class UserDto {
     @Size(min = 2, max = 40) @NotBlank
-    private String userID;
+    private String username;
     @NotBlank
-    private String passWord;
+    private String password;
     private String name;
     private Integer gender;
     private Double height;
@@ -19,8 +19,8 @@ public class UserDto {
 
     public User toEntity(){
         return User.builder()
-                .userID(userID)
-                .passWord(passWord)
+                .username(username)
+                .password(password)
                 .name(name)
                 .gender(gender)
                 .height(height)
