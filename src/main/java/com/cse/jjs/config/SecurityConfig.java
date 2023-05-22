@@ -33,8 +33,8 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
                 .and()
                 .formLogin().permitAll()
-                .loginPage("/login")
-                .loginProcessingUrl("/login")
+                .loginPage("/users/login")
+                .loginProcessingUrl("/users/login")
                 .defaultSuccessUrl("/");
 
         return http.build();
