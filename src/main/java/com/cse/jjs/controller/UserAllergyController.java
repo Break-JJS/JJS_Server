@@ -23,7 +23,7 @@ import java.util.List;
 public class UserAllergyController {
     private final UserAllergyService userAllergyService;
 
-    //x-www-form-urlencoded
+    //json
     @PostMapping(value = "/allergy/add")
     public ResponseEntity<?> addAllergyUser(@AuthenticationPrincipal PrincipalDetails principalDetails, @RequestBody UserAllergyDTO userAllergyDTO)
     {
