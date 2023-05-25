@@ -15,10 +15,11 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class Efficacy {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long efficacyId;
     @Column(nullable = false)
     private int action;
+    @Id
     @Column(nullable = false)
     private String efficacyName;
 

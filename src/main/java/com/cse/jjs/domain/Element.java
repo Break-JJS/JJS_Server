@@ -15,8 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class Element {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long elementId;
+    @Id
     @Column(nullable = false)
     private String elementName;
 

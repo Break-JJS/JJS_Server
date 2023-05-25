@@ -16,8 +16,7 @@ import java.util.List;
 @Data
 public class Disease {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long diseaseId;
+    @Id
     @Column(nullable = false)
     private String diseaseName;
     @Column(length = 1024)
