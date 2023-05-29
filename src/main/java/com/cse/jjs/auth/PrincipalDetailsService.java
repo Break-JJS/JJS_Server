@@ -23,12 +23,16 @@ public class PrincipalDetailsService implements UserDetailsService {
 
         Optional<User> userEntity = userRepository.findByUsername(username);
         log.info("loadUserByUsername userID={}",username);
+        System.out.println("what?"+userRepository.findByUsername(username).get().getUsername());
+        //System.out.println(userEntity.get());
 
-        if(userEntity.isEmpty()){
+        if(!userEntity.isPresent()){
             return null;
         }
         else{
             return new PrincipalDetails(userEntity.get());
         }
     }
+
+
 }
