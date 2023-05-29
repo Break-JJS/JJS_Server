@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,22 +24,23 @@ public class UserController {
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
     @GetMapping(value="/users/join")
-    public String createForm(){
-        return "users/createUserForm";
+    public ResponseEntity<Object> createForm(){
+
+        return ResponseEntity.ok().body("JoinForm");
     }
 
 
     @PostMapping(value = "/users/join")
-    public String create(@Valid @RequestBody UserDto userDto){
+    public ResponseEntity<Object> create(@Valid @RequestBody UserDto userDto){
         User user = userDto.toEntity();
         log.info(userDto.toString());
         userService.join(user);
 
-        return "redirect:/users/login";
+        return ResponseEntity.ok().body("success Join");
     }
 
     @GetMapping("/users/login")
-    public String loginForm(){
-        return "users/login";
+    public ResponseEntity<Object> loginForm(){
+        return ResponseEntity.ok().body("longinForm");
     }
 }
