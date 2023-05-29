@@ -10,3 +10,6 @@ spring:
       ddl-auto: update
     show-sql: true
     database: mysql
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans=true:
