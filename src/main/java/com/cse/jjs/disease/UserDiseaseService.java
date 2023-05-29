@@ -22,6 +22,7 @@ public class UserDiseaseService {
         userDiseaseRepository.deleteUserDisease(diseaseName, userId);
     }
 
+    @Transactional
     public List<UserDisease> selectUserDisease(String username){
         return userDiseaseRepository.findAllByUser_Name(username);
     }
