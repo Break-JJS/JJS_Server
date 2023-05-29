@@ -10,7 +10,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
@@ -25,14 +27,17 @@ public class UserAllergyController {
 
     //json
     @PostMapping(value = "/allergy/add")
-    public ResponseEntity<?> addAllergyUser(@AuthenticationPrincipal PrincipalDetails principalDetails, @RequestBody UserAllergyDTO userAllergyDTO)
+    public ResponseEntity<Object> addAllergyUser(@RequestBody UserAllergyDTO userAllergyDTO)
     {
-        log.info("username={} and allergyList={}", principalDetails.getUsername(), userAllergyDTO);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        PrincipalDetails mPrincipalDetails = (PrincipalDetails) auth.getPrincipal();
+
+        log.info("username={} and allergyList={}", mPrincipalDetails.getUsername(), userAllergyDTO);
 
 
         userAllergyDTO.getAllergy().forEach(d->{
-            log.info("id={} and name={}",d.getAllergyName(), d.getAllergyName());
-            userAllergyService.aUserAllergy(d.getAllergyName(), principalDetails.getUsername());
+            log.info("id={} and name={}",mPrincipalDetails.getUsername(), d.getAllergyName());
+            userAllergyService.aUserAllergy(d.getAllergyName(), mPrincipalDetails.getUsername());
         });
 
 
@@ -40,16 +45,19 @@ public class UserAllergyController {
     }
 
     @PatchMapping(value = "/allergy/add")
-    public ResponseEntity<?> updateAllergyUser(@AuthenticationPrincipal PrincipalDetails principalDetails, @RequestBody UserAllergyDTO userAllergyDTO){
-        log.info("username={} and allergyList={}", principalDetails.getUsername(), userAllergyDTO);
+    public ResponseEntity<Object> updateAllergyUser(@RequestBody UserAllergyDTO userAllergyDTO){
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        PrincipalDetails mPrincipalDetails = (PrincipalDetails) auth.getPrincipal();
+        log.info("username={} and allergyList={}", mPrincipalDetails.getUsername(), userAllergyDTO);
 
         userAllergyDTO.getDelAllergy().forEach(d->{
             log.info("name={}", d.getAllergyName());
-            userAllergyService.dUserAllergy(d.getAllergyName(), principalDetails.getUsername());
+            userAllergyService.dUserAllergy(d.getAllergyName(), mPrincipalDetails.getUsername());
         });
         userAllergyDTO.getAllergy().forEach(d->{
             log.info("id={} and name={}",d.getAllergyName(), d.getAllergyName());
-            userAllergyService.aUserAllergy(d.getAllergyName(), principalDetails.getUsername());
+            userAllergyService.aUserAllergy(d.getAllergyName(), mPrincipalDetails.getUsername());
         });
 
 

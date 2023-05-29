@@ -25,13 +25,4 @@ public class UserAllergyService {
         userAllergyRepository.deleteUserAllergy(allergyName, userId);
     }
 
-    @Transactional
-    public List<?> dAllByUserId(String userId){
-        return userAllergyRepository.deleteAllByUserId(userId);
-    }
-
-    public boolean isUser(User user){
-        Optional<UserAllergy> userAllergy = userAllergyRepository.findByUser(user);
-        return userAllergy.isPresent();
-    }
 }

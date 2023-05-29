@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public interface UserAllergyRepository extends JpaRepository<UserAllergy, Long> {
 
-    Optional<UserAllergy> findByUser(User user);
+
 
 
     @Modifying
@@ -22,8 +22,6 @@ public interface UserAllergyRepository extends JpaRepository<UserAllergy, Long> 
     @Query(value = "DELETE FROM user_allergy WHERE allergy_id=:allergyName AND user_id=:userId", nativeQuery = true)
     void deleteUserAllergy(String allergyName, String userId);
 
-    @Modifying
-    @Query(value = "DELETE FROM user_allergy WHERE user_id=:userId", nativeQuery = true)
-    List<?> deleteAllByUserId(String userId);
+
 
 }
