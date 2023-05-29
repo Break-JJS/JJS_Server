@@ -8,7 +8,6 @@ import java.util.List;
 
 @Data
 public class UserDiseaseDTO {
-    private User user;
     private List<Disease> delDisease;
     private List<Disease> disease;
 }

@@ -11,6 +11,5 @@ import java.util.List;
 public class UserAllergyDTO {
     private List<Allergy> allergy;
     private List<Allergy> delAllergy;
-    private User user;
 
 }
