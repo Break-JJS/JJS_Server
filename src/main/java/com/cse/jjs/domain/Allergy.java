@@ -20,9 +20,9 @@ public class Allergy {
     @Column(nullable = false)
     private String allergyName;
 
-    @OneToMany(mappedBy = "allergy")
-    private List<UserAllergy> userAllergies = new ArrayList<>();
-
-    @OneToMany(mappedBy = "allergy")
-    private List<ElementAllergy> elementAllergies = new ArrayList<>();
+//    @OneToMany(mappedBy = "allergy")
+//    private List<UserAllergy> userAllergies = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "allergy")
+//    private List<ElementAllergy> elementAllergies = new ArrayList<>();
 }

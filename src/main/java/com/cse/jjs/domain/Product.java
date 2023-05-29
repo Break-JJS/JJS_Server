@@ -22,6 +22,6 @@ public class Product {
     @Column(nullable = false)
     private String productName;
 
-    @OneToMany(mappedBy = "product")
-    private List<ElementProduct> elementProducts = new ArrayList<>();
+//    @OneToMany(mappedBy = "product")
+//    private List<ElementProduct> elementProducts = new ArrayList<>();
 }

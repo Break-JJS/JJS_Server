@@ -26,8 +26,8 @@ public class User {
     @Column(nullable = false)
     private Double weight;
 
-    @OneToMany(mappedBy = "user")
-    private List<UserAllergy> userAllergies = new ArrayList<>();
-    @OneToMany(mappedBy = "user")
-    private List<UserDisease> userDiseases = new ArrayList<>();
+//    @OneToMany(mappedBy = "user")
+//    private List<UserAllergy> userAllergies = new ArrayList<>();
+//    @OneToMany(mappedBy = "user")
+//    private List<UserDisease> userDiseases = new ArrayList<>();
 }

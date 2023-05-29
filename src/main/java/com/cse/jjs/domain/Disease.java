@@ -22,8 +22,8 @@ public class Disease {
     @Column(length = 1024)
     private String diseaseDescribe;
 
-    @OneToMany(mappedBy = "disease")
-    private List<UserDisease> userDiseases = new ArrayList<>();
-    @OneToMany(mappedBy = "disease")
-    private List<ElementDisease> elementDiseases = new ArrayList<>();
+//    @OneToMany(mappedBy = "disease")
+//    private List<UserDisease> userDiseases = new ArrayList<>();
+//    @OneToMany(mappedBy = "disease")
+//    private List<ElementDisease> elementDiseases = new ArrayList<>();
 }

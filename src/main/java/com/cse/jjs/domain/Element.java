@@ -19,12 +19,12 @@ public class Element {
     @Column(nullable = false)
     private String elementName;
 
-    @OneToMany(mappedBy = "element")
-    private List<ElementEfficacy> elementEfficacies = new ArrayList<>();
-    @OneToMany(mappedBy = "element")
-    private List<ElementAllergy> elementAllergies = new ArrayList<>();
-    @OneToMany(mappedBy = "element")
-    private List<ElementDisease> elementDiseases = new ArrayList<>();
-    @OneToMany(mappedBy = "element")
-    private List<ElementProduct> elementProducts = new ArrayList<>();
+//    @OneToMany(mappedBy = "element")
+//    private List<ElementEfficacy> elementEfficacies = new ArrayList<>();
+//    @OneToMany(mappedBy = "element")
+//    private List<ElementAllergy> elementAllergies = new ArrayList<>();
+//    @OneToMany(mappedBy = "element")
+//    private List<ElementDisease> elementDiseases = new ArrayList<>();
+//    @OneToMany(mappedBy = "element")
+//    private List<ElementProduct> elementProducts = new ArrayList<>();
 }

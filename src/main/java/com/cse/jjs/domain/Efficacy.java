@@ -23,6 +23,6 @@ public class Efficacy {
     @Column(nullable = false)
     private String efficacyName;
 
-    @OneToMany(mappedBy = "efficacy")
-    private List<ElementEfficacy> elementEfficacies = new ArrayList<>();
+//    @OneToMany(mappedBy = "efficacy")
+//    private List<ElementEfficacy> elementEfficacies = new ArrayList<>();
 }
