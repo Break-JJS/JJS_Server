@@ -70,7 +70,7 @@ public class ElementController {
             List<String> badEfficacy = new ArrayList<>();
             log.info("element={}", d);
             List<ElementEfficacy> elementEfficacies = elementEfficacyService.selectElementEfficacy(d);
-
+            //System.out.println(elementEfficacies);
             if(!elementEfficacies.isEmpty())
             {
                 for (ElementEfficacy efficacy: elementEfficacies) {

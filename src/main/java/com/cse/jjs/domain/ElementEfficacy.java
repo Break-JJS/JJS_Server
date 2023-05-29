@@ -19,11 +19,11 @@ public class ElementEfficacy {
     private Integer action; //이름 action으로 교체할 예정
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="ELEMENT_ID")
     private Element element;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "EFFICACY_ID")
     private Efficacy efficacy;
 }
