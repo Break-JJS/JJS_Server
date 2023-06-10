@@ -1,5 +1,6 @@
 package com.cse.jjs.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping("/")
-    public String home() {
-        return "home";
+    public ResponseEntity<Object> home() {
+        return ResponseEntity.ok().body("root page");
     }
 }
