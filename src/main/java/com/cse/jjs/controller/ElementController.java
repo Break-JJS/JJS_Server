@@ -106,15 +106,22 @@ public class ElementController {
         PrincipalDetails mPrincipalDetails = (PrincipalDetails) auth.getPrincipal();
 
         Map<String, Object> userDiseaseElementMap= new HashMap<>();
-        Set<String> corrDisease = new HashSet<>();
+        List<Map<String,Object>> corrDisease = new ArrayList<>();
         List<UserDisease> userDiseases = userDiseaseService.selectUserDisease(mPrincipalDetails.getUsername());
+        Long id = 0L;
 
         for(String element : elements){
             List<ElementDisease> elementDiseases = elementDiseaseService.selectElementDiseases(element);
             for (UserDisease userDisease : userDiseases) {
                 for (ElementDisease elementDisease : elementDiseases) {
+
                     if(userDisease.getDisease().getDiseaseName().equals(elementDisease.getDisease().getDiseaseName())){
-                        corrDisease.add(userDisease.getDisease().getDiseaseName());
+                        Map<String, Object> diseaseElementMap = new HashMap<>();
+                        diseaseElementMap.put("id", id++);
+                        diseaseElementMap.put("element", element);
+                        diseaseElementMap.put("disease", userDisease.getDisease().getDiseaseName());
+                        diseaseElementMap.put("action", elementDisease.getAction());
+                        corrDisease.add(diseaseElementMap);
                     }
                 }
             }
