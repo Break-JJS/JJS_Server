@@ -21,6 +21,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -38,17 +39,18 @@ public class ElementController {
     private final ElementDiseaseService elementDiseaseService;
 
     @ApiOperation(value = "성분-알러지 조회")
-    @GetMapping(value = "/element/allergy")
-    public ResponseEntity<Object> selectElementAllergy(@RequestParam(value = "element") String[] elements){
+    @PostMapping(value = "/element/allergy")
+    public ResponseEntity<Object> selectElementAllergy(@RequestBody ElementDTO elements){
         log.info("elementDTO={}", elements);
 
         List<String> allergy = new ArrayList<>();
         Map<String, Object> allergyMap = new HashMap<>();
+        List<Element> elementList = elements.getElements();
 
-        for (String d : elements) {
+        for (Element d : elementList) {
             log.info("element={}",d);
-            if(elementAllergyService.isAllergy(d).isPresent()){
-                allergy.add(d);
+            if(elementAllergyService.isAllergy(d.getElementName()).isPresent()){
+                allergy.add(d.getElementName());
             }
         }
 
@@ -57,19 +59,20 @@ public class ElementController {
     }
 
     @ApiOperation(value = "성분-효능 조회")
-    @GetMapping(value = "/element/efficacy")
-    public ResponseEntity<Object> selectElementEfficacies(@RequestParam(value = "element") String[] elements){
+    @PostMapping(value = "/element/efficacy")
+    public ResponseEntity<Object> selectElementEfficacies(@RequestBody ElementDTO elements){
         log.info("elementDTO={}", elements);
         List<Object> result = new ArrayList<>();
+        List<Element> elementList = elements.getElements();
         Map<String, Object> jsonMap = new HashMap<>();
         Long id = 0L;
 
-        for (String d : elements) {
+        for (Element d : elementList) {
             Map<String,Object> elementEfficacyMap = new HashMap<>();
             List<String> goodEfficacy = new ArrayList<>();
             List<String> badEfficacy = new ArrayList<>();
             log.info("element={}", d);
-            List<ElementEfficacy> elementEfficacies = elementEfficacyService.selectElementEfficacy(d);
+            List<ElementEfficacy> elementEfficacies = elementEfficacyService.selectElementEfficacy(d.getElementName());
             //System.out.println(elementEfficacies);
             if(!elementEfficacies.isEmpty())
             {
@@ -84,7 +87,7 @@ public class ElementController {
                 }
 
                 elementEfficacyMap.put("id", id++);
-                elementEfficacyMap.put("element", d);
+                elementEfficacyMap.put("element", d.getElementName());
                 elementEfficacyMap.put("goodEfficacy", goodEfficacy);
                 elementEfficacyMap.put("goodEfficacyCnt", goodEfficacy.size());
                 elementEfficacyMap.put("badEfficacy", badEfficacy);
@@ -98,8 +101,8 @@ public class ElementController {
     }
 
     @ApiOperation(value = "성분-질병(유저) 조회")
-    @GetMapping(value = "/element/disease")
-    public ResponseEntity<Object> selectUserDiseaseElement(@RequestParam(value = "element") String[] elements){
+    @PostMapping(value = "/element/disease")
+    public ResponseEntity<Object> selectUserDiseaseElement(@RequestBody ElementDTO elements){
 
         System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -107,18 +110,19 @@ public class ElementController {
 
         Map<String, Object> userDiseaseElementMap= new HashMap<>();
         List<Map<String,Object>> corrDisease = new ArrayList<>();
+        List<Element> elementList = elements.getElements();
         List<UserDisease> userDiseases = userDiseaseService.selectUserDisease(mPrincipalDetails.getUsername());
         Long id = 0L;
 
-        for(String element : elements){
-            List<ElementDisease> elementDiseases = elementDiseaseService.selectElementDiseases(element);
+        for(Element element : elementList){
+            List<ElementDisease> elementDiseases = elementDiseaseService.selectElementDiseases(element.getElementName());
             for (UserDisease userDisease : userDiseases) {
                 for (ElementDisease elementDisease : elementDiseases) {
 
                     if(userDisease.getDisease().getDiseaseName().equals(elementDisease.getDisease().getDiseaseName())){
                         Map<String, Object> diseaseElementMap = new HashMap<>();
                         diseaseElementMap.put("id", id++);
-                        diseaseElementMap.put("element", element);
+                        diseaseElementMap.put("element", element.getElementName());
                         diseaseElementMap.put("disease", userDisease.getDisease().getDiseaseName());
                         diseaseElementMap.put("action", elementDisease.getAction());
                         corrDisease.add(diseaseElementMap);
