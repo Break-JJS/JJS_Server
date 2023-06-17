@@ -17,6 +17,7 @@ public class ElementEfficacy {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long elementEfficacyId;
     private Integer action; //이름 action으로 교체할 예정
+    private String body;
 
 
     @ManyToOne(fetch = FetchType.EAGER)

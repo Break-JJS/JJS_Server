@@ -71,6 +71,7 @@ public class ElementController {
             Map<String,Object> elementEfficacyMap = new HashMap<>();
             List<String> goodEfficacy = new ArrayList<>();
             List<String> badEfficacy = new ArrayList<>();
+            HashSet<String> body = new HashSet<>();
             log.info("element={}", d);
             List<ElementEfficacy> elementEfficacies = elementEfficacyService.selectElementEfficacy(d.getElementName());
             //System.out.println(elementEfficacies);
@@ -84,6 +85,9 @@ public class ElementController {
                     else{
                         badEfficacy.add(efficacy.getEfficacy().getEfficacyName());
                     }
+                    if(!efficacy.getBody().isEmpty()){
+                        body.add(efficacy.getBody());
+                    }
                 }
 
                 elementEfficacyMap.put("id", id++);
@@ -92,6 +96,7 @@ public class ElementController {
                 elementEfficacyMap.put("goodEfficacyCnt", goodEfficacy.size());
                 elementEfficacyMap.put("badEfficacy", badEfficacy);
                 elementEfficacyMap.put("badEfficacyCnt", badEfficacy.size());
+                elementEfficacyMap.put("body",body);
                 result.add(elementEfficacyMap);
             }
         }
