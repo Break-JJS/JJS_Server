@@ -71,8 +71,8 @@ public class ElementController {
             Map<String,Object> elementEfficacyMap = new HashMap<>();
             List<String> goodEfficacy = new ArrayList<>();
             List<String> badEfficacy = new ArrayList<>();
-            HashSet<String> goodBody = new HashSet<>();
-            HashSet<String> badBody = new HashSet<>();
+            List<String> goodBody = new ArrayList<>();
+            List<String> badBody = new ArrayList<>();
             log.info("element={}", d);
             List<ElementEfficacy> elementEfficacies = elementEfficacyService.selectElementEfficacy(d.getElementName());
             //System.out.println(elementEfficacies);
