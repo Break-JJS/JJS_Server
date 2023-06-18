@@ -135,6 +135,7 @@ public class ElementController {
                         diseaseElementMap.put("id", id++);
                         diseaseElementMap.put("element", element.getElementName());
                         diseaseElementMap.put("disease", userDisease.getDisease().getDiseaseName());
+                        diseaseElementMap.put("body", userDisease.getDisease().getDiseaseDescribe());
                         diseaseElementMap.put("action", elementDisease.getAction());
                         corrDisease.add(diseaseElementMap);
                     }
